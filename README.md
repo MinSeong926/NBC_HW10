@@ -4,7 +4,7 @@
 # 필수 기능
 1. **새 프로젝트 만들기**
     - [ ]  Third Person 샘플 프로젝트 생성
-        - 샘플 프로젝트?
+        - 샘플 프로젝트
             
             !Games, Third Person, C++, Scalable. 프로젝트 이름은 “ModuleAndPlugin”
             
@@ -13,8 +13,6 @@
         - 블루프린트 프로젝트 VS C++ 프로젝트
             - 블루프린트 프로젝트 : C++ 코드를 작성하지 않는 프로젝트.
             - C++ 프로젝트 → 개발자가 직접 모듈을 추가하고 임포트 할 수 있음.
-                
-                !image.png
                 
 2. **새 모듈(Test) 생성 및 설정**
     - [ ]  **모듈 폴더 구조 생성:** `Source/Test` 폴더를 만들고 필수 파일(`Test.Build.cs`, `Test.h`, `Test.cpp`)을 생성합니다.
