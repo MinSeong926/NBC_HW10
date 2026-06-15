@@ -49,6 +49,8 @@ public:
 	
 
 protected:
+	// Test 모듈을 위한 BeginPlay 오버라이드
+	virtual void BeginPlay() override;
 
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);

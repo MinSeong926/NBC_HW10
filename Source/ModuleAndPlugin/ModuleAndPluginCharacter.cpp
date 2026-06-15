@@ -1,6 +1,9 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+﻿// Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ModuleAndPluginCharacter.h"
+#include "Test/TestActor.h"
+#include "../Plugins/Temporary/Source/Temporary/CharacterData.h"
+#include "Engine/Engine.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -89,6 +92,30 @@ void AModuleAndPluginCharacter::SetupPlayerInputComponent(UInputComponent* Playe
 	else
 	{
 		UE_LOG(LogTemplateCharacter, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
+	}
+}
+
+void AModuleAndPluginCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Test 모듈에서 만든 TestActor 스폰
+	if (GetWorld())
+	{
+		GetWorld()->SpawnActor<ATestActor>(ATestActor::StaticClass(), FVector::ZeroVector, FRotator::ZeroRotator);
+	}
+
+	// 도전 기능 : UCharacterData 생성 및 데이터 읽기
+	UCharacterData* MyData = NewObject<UCharacterData>(this);
+	if (IsValid(MyData))
+	{
+		FString OutputMessage = FString::Printf(TEXT("플러그인 데이터 로드 완료! 이름: %s / 레벨: %d"), *MyData->CharacterName, MyData->Level);
+
+		// 화면 좌상단에 초록색 텍스트로 10초간 출력
+		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Green, OutputMessage);
+
+		// 출력 로그(Output Log) 창에도 출력
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *OutputMessage);
 	}
 }
 
